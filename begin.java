@@ -63,7 +63,7 @@ public class begin {
 		//更新文本
 		Scanner input3 = new Scanner(System.in);
 		word1 = input3.nextLine();
-		
+		//test 1.4
 		System.out.print(Adj.generateNewText(word1));
 	}
 }
