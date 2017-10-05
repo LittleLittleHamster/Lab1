@@ -106,12 +106,8 @@ public class AdjGraph {
 				newStringBu.append(" ");//!!!!!!!!!!桥接词没随机选择
 			}
 		}
-<<<<<<< HEAD
-		int i = 1;
-=======
 		int i = 1;
 		int p = 0;
->>>>>>> C4
 		newStringBu.append(newText[len-1]);
 		String newString = new String(newStringBu);
 		return newString;

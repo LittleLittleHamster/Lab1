@@ -10,10 +10,7 @@ public class secFile {
 		String[] newAlhtemp = new String[100];
 		int k = 0,m = 0,flag = 0;
 		System.out.println(k);
-<<<<<<< HEAD
-		System.out.println(m);
-=======
->>>>>>> C4
+
 		for (int i = 0 ;i < t;i++) {
 			alh[i] = alh[i].replaceAll("[~!@#$%^&*()?<>,.]", " ");
 		}
