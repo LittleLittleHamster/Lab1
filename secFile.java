@@ -9,6 +9,8 @@ public class secFile {
 		Vector<String> wholeAlh= new Vector<String>();  //用户的输入除去特殊字符 
 		String[] newAlhtemp = new String[100];
 		int k = 0,m = 0,flag = 0;
+		System.out.println(k);
+
 		for (int i = 0 ;i < t;i++) {
 			alh[i] = alh[i].replaceAll("[~!@#$%^&*()?<>,.]", " ");
 		}
