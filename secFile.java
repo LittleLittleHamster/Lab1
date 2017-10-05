@@ -40,5 +40,7 @@ public class secFile {
 			Adj.vexCreate(j,newAlhtemp[j]);  //构造顶点表
 		}
 		return wholeAlh;
+		
+	//2.7
 	}
 }

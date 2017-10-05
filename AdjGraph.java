@@ -110,5 +110,6 @@ public class AdjGraph {
 		newStringBu.append(newText[len-1]);
 		String newString = new String(newStringBu);
 		return newString;
+		//2.7
 	}
 }
