@@ -64,6 +64,8 @@ public class begin {
 		Scanner input3 = new Scanner(System.in);
 		word1 = input3.nextLine();
 		//test 1.4
+		//test 2.5
+		System.out.print("Git2.4");
 		System.out.print(Adj.generateNewText(word1));
 	}
 }
