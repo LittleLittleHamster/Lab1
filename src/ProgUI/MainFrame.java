@@ -455,7 +455,6 @@ public class MainFrame {
 		
 		dispPic.setText("有向图将在此显示！");
 		dispPic.setFont(new Font("楷体", Font.BOLD, 40));
-		//dispPic.setIcon(iconTemp);
 		dispPic.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		dispPic.setHorizontalAlignment(JLabel.CENTER);
 		
