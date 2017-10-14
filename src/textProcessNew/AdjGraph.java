@@ -167,7 +167,7 @@ public class AdjGraph {
 			gv.addln("size = \"15,4.3\"");
 			gv.addln("edge [color=black]");
 			//Ìî³ädotÓïÑÔ´úÂë
-			//gv.addln("A -> B;");
+
 			for(int i = 0; i < this.NumOfVertex; i++){
 				for(int j = 0; j < this.vertexList[i].edgeList.size(); j++){
 					EdgeNode veTemp = (EdgeNode) vertexList[i].edgeList.get(j);
