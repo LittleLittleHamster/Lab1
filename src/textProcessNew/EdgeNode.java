@@ -9,4 +9,5 @@ public class EdgeNode{
 	public boolean visited = false;
 
 	public int weight;	 //±ßµÄÈ¨ÖØ
+	//Alternation on branch B1
 }

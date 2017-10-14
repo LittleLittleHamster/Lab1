@@ -4,6 +4,6 @@ import java.util.*;
 import textProcessNew.EdgeNode;
 
 public class VertexNode {
-	public String vertex;
+	public String vertex;	//vertex
 	public ArrayList edgeList;		//±ß±í
 }
