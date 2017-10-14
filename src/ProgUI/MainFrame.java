@@ -13,6 +13,7 @@ import textProcessNew.*;
 
 
 public class MainFrame {
+	//New insert
 	//Ö÷´°Ìå
 	protected JFrame bottomFrame = new JFrame("Lab1");
 	
