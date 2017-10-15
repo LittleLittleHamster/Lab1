@@ -11,4 +11,5 @@ public class EdgeNode{
 	public int weight;	 //±ßµÄÈ¨ÖØ
 	//Alternation on branch B1
 	//Alternation in step 3-5
+	//Alternation in step 3-6
 }
