@@ -1,6 +1,7 @@
 package newLab1;
 
 public class VertexNode {
+	//*****
 	String vertex;
 	EdgeNode firstedge;
 	public VertexNode(String vertex) {
