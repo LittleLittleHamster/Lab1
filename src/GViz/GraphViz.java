@@ -109,7 +109,7 @@ public class GraphViz
  public void decreaseDpi() {
      if (this.currentDpiPos > 0) {
          --this.currentDpiPos;
-     }
+     }//****
  }
 
  public int getImageDpi() {
