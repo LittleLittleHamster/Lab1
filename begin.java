@@ -60,11 +60,10 @@ public class begin {
 				}
 			}
 		}
-		//更新文本
+		//更新
 		Scanner input3 = new Scanner(System.in);
 		word1 = input3.nextLine();
-		//test 1.4
-
+       
 		System.out.print("Git2.4");
 		System.out.print(Adj.generateNewText(word1));
 	}

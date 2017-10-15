@@ -7,4 +7,5 @@ public class VertexNode {
 		this.vertex = vertex;
 		this.firstedge = null;
 	}
+	//a
 }
