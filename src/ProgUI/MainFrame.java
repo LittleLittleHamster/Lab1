@@ -33,7 +33,7 @@ public class MainFrame {
 	protected JTextArea progOutput = new JTextArea(4, 75);
 	
 	
-	//按钮组件***
+	//按钮组件****
 	protected JButton btnOpenFile = new JButton("打开文件");
 	
 	protected JButton btnShowDirectedGraph = new JButton("展示有向图");
