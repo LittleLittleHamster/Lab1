@@ -1,18 +1,44 @@
-package StartDemo;
+package startdemo;
 
+import java.util.logging.Logger;
 import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
+import progui.MainFrame2;
 
-import ProgUI.*;
+
+
+
+/**. 
+ *项目启动类  
+ */
 
 public class StartProg {
-	public static void main(String[] args){
-		//将界面的外观改为系统的外观
-		try {  
-            String lookAndFeel =   
-                UIManager.getSystemLookAndFeelClassName();
-            UIManager.setLookAndFeel(lookAndFeel);  
-        } catch (Exception e) {}  
-		MainFrame ProgFrame = new MainFrame();
-	}
-	//This is a new line.
+  /**.  
+  */
+  public static final Logger log = Logger.getLogger(StartProg.class.toString());
+  /**.  
+   */
+  
+  public void startpro() {
+    //为了消除警告
+  }
+  /**.  
+   */
+  
+  public static void main(final String[] args) {                                  
+    final String lookAndFeel = UIManager.getSystemLookAndFeelClassName();
+
+    try {
+      UIManager.setLookAndFeel(lookAndFeel);
+    } catch (ClassNotFoundException | InstantiationException | IllegalAccessException
+      | UnsupportedLookAndFeelException e) {
+      // TODO 自动生成的 catch 块
+      log.warning("Ops!");
+      
+    }
+
+       
+    final MainFrame2 progframe = new MainFrame2();
+    progframe.goMainFrame();
+  }
 }
