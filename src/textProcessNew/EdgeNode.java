@@ -1,12 +1,57 @@
-package textProcessNew;
-
-public class EdgeNode{
-	public int startVer;	//ÆðµãµÄË÷Òý
-	public int endVer;		//ÖÕµãµÄË÷Òý
-	public String startWord;	//ÆðµãµÄµ¥´Ê
-	public String endWord;		//ÖÕµãµÄµ¥´Ê
-	
-	public boolean visited = false;
-
-	public int weight;	 //±ßµÄÈ¨ÖØ
+package textprocessnew;
+/**
+* 
+*
+* @author George Bush
+*/
+public class EdgeNode {  
+  /**
+  * 
+  *
+  * @author George Bush
+  */
+  public int startVer;//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+  /**
+  * 
+  *
+  * @author George Bush
+  */
+  public int endVer;//ï¿½Õµï¿½ï¿½ï¿½ï¿½ï¿½ï¿?
+  /**
+  * 
+  *
+  * @author George Bush
+  */  
+  public String startWord;  //ï¿½ï¿½ï¿½Äµï¿½ï¿½ï¿½
+  /**
+  * 
+  *
+  * @author George Bush
+  */  
+  public String endWord;    //ï¿½Õµï¿½Äµï¿½ï¿½ï¿?
+  /**
+  * 
+  *
+  * @author George Bush
+  */  
+  public boolean visited ;
+  /**
+  * 
+  *
+  * @author George Bush
+  */
+  public int weight;   //ï¿½ßµï¿½È¨ï¿½ï¿½
+  /**
+  * 
+  *
+  * @author George Bush
+  */
+  public void doSomething() 
+  { 
+	//This constructor is intentionally empty. Nothing special is needed here.  
+  }
+  EdgeNode()
+  {
+	//This constructor is intentionally empty. Nothing special is needed here.  
+  }
 }

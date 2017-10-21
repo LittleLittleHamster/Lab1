@@ -1,4 +1,4 @@
-package GViz;
+package gviz;
 
 //GraphViz.java - a simple API to call dot from Java programs
 
@@ -141,7 +141,7 @@ public class GraphViz
  public GraphViz() {
      if (GraphViz.osName.contains("Windows")) {
          this.tempDir = "c:/temp";
-         this.executable = "D:/graphviz/bin/dot.exe";
+         this.executable = "D:\\graphviz\\bin\\dot.exe";
      } else if (GraphViz.osName.equals("MacOSX")) {
          this.tempDir = "/tmp";
          this.executable = "/usr/local/bin/dot";
@@ -201,12 +201,12 @@ public class GraphViz
   * @param type Type of the output image to be produced, e.g.: gif, dot, fig, pdf, ps, svg, png.
   * @param representationType Type of how you want to represent the graph:
   * <ul>
-  * 	<li>dot</li>
-  * 	<li>neato</li>
-  * 	<li>fdp</li>
-  * 	<li>sfdp</li>
-  * 	<li>twopi</li>
-  * 	<li>circo</li>
+  *   <li>dot</li>
+  *   <li>neato</li>
+  *   <li>fdp</li>
+  *   <li>sfdp</li>
+  *   <li>twopi</li>
+  *   <li>circo</li>
   * </ul>
   * @see http://www.graphviz.org under the Roadmap title
   * @return A byte array containing the image of the graph.
@@ -265,12 +265,12 @@ public class GraphViz
   * @param type Type of the output image to be produced, e.g.: gif, dot, fig, pdf, ps, svg, png.
   * @param representationType Type of how you want to represent the graph:
   * <ul>
-  * 	<li>dot</li>
-  * 	<li>neato</li>
-  * 	<li>fdp</li>
-  * 	<li>sfdp</li>
-  * 	<li>twopi</li>
-  * 	<li>circo</li>
+  *   <li>dot</li>
+  *   <li>neato</li>
+  *   <li>fdp</li>
+  *   <li>sfdp</li>
+  *   <li>twopi</li>
+  *   <li>circo</li>
   * </ul>
   * @see http://www.graphviz.org under the Roadmap title
   * @return The image of the graph in .gif format.
@@ -396,6 +396,6 @@ public class GraphViz
      }
 
      this.graph = sb;
- }
+  }
 
 } // end of class GraphViz
