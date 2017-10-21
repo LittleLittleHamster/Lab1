@@ -9,7 +9,8 @@ public class StartProg {
 		//将界面的外观改为系统的外观
 		try {  
             String lookAndFeel =   
-                UIManager.getSystemLookAndFeelClassName();
+                UIManager.
+                getSystemLookAndFeelClassName();
             UIManager.setLookAndFeel(lookAndFeel);  
         } catch (Exception e) {}  
 		MainFrame ProgFrame = new MainFrame();
