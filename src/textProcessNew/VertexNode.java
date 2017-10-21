@@ -1,9 +1,32 @@
-package textProcessNew;
+package textprocessnew;
 
-import java.util.*;
-import textProcessNew.EdgeNode;
 
+import java.util.List;
+/**
+* 
+*
+* @author George Bush
+*/
 public class VertexNode {
-	public String vertex;
-	public ArrayList edgeList;		//±ß±í
+/**
+* 
+*
+* @author George Bush
+*/
+  public String vertex;
+  /**
+  * 
+  *
+  * @author George Bush
+  */
+  public transient List edgeList;    //ï¿½ß±ï¿½
+  /**
+   * 
+   *
+   * @author George Bush
+   */
+  VertexNode()
+	{
+		//dosometing
+	}
 }
