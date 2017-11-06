@@ -14,5 +14,4 @@ public class StartProg {
         } catch (Exception e) {}  
 		MainFrame ProgFrame = new MainFrame();
 	}
-	//This is a new line.
 }

@@ -574,7 +574,7 @@ public class MainFrame {
 		bottomFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		bottomFrame.setVisible(true);
 		
-		
+		//txtFileChooser.showOpenDialog(bottomFrame);
 	}
 }
 

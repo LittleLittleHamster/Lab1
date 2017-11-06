@@ -122,13 +122,6 @@ public class AdjGraph {
 		
 		int indexWord1;
 		int indexWord2;
-		
-		if(word1.equals("") || word2.equals("")) {
-		    return "´æÔÚ¿Õµ¥´Ê£¬ÇëÖØÐÂÊäÈë£¡";
-		}
-		if(word1.matches("[a-zA-Z]+") == false || word2.matches("[a-zA-Z]+") == false) {
-		    return "°üº¬·Ç×ÖÄ¸×Ö·û£¬ÇëÖØÐÂÊäÈë£¡";
-		}
 		if(collectList.contains(word1) == false && collectList.contains(word2) == true){
 			res = "No \"" + word1 + "\" in the Graph!";
 			return res;
@@ -424,7 +417,7 @@ public class AdjGraph {
 		gv.addln("size = \"15,4.3\"");
 		gv.addln("edge [color=black]");
 		//Ìî³ädotÓïÑÔ´úÂë
-		//gv.addln("A -> B;");	this is a alternation
+		//gv.addln("A -> B;");
 		for(int i = 0; i < this.NumOfVertex; i++){
 			for(int j = 0; j < this.vertexList[i].edgeList.size(); j++){
 				EdgeNode veTemp = (EdgeNode) vertexList[i].edgeList.get(j);
@@ -604,6 +597,7 @@ public class AdjGraph {
 		}
 		if(count == 0){
 			pathTemp = pathTemp + vertexList[startNode].vertex + " -> " + vertexList[endNode].vertex +";";
+			//gv.addln(vertexList[startNode].vertex + " -> " + vertexList[endNode].vertex +";");
 			return;
 		}
 		for(int i = 0; i < count; i++){
