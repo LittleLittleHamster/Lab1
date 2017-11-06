@@ -246,13 +246,15 @@ public class AdjGraph {
 		Random random = new Random();
 		
 		for(int i = 0; i < inputTxtArray.length - 1; i++){
-			String SearchRes = queryBridgeWords(inputTxtArray[i].toLowerCase().replaceAll("[^a-z]", " ").trim(), 
+			String SearchRes = queryBridgeWords(
+			        inputTxtArray[i].toLowerCase().replaceAll("[^a-z]", " ").trim(), 
 					inputTxtArray[i+1].toLowerCase().replaceAll("[^a-z]", " ").trim());
 			if(SearchRes.startsWith("No")){
 				res = res + " " + inputTxtArray[i+1];
 			}
 			else{
-				String[] brgWord = SearchRes.split(":")[1].replaceAll("and", " ").replaceAll("[^a-z]", " ").trim().split("\\s+");
+				String[] brgWord = SearchRes.split(":")[1].replaceAll("and", " ")
+				        .replaceAll("[^a-z]", " ").trim().split("\\s+");
 				if(brgWord.length == 1){
 					res = res + " " + brgWord[0] + " " + inputTxtArray[i+1];
 				}
