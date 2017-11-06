@@ -1,7 +1,7 @@
-package textProcessNew;
+package textprocessnew;
 
 import java.util.*;
-import textProcessNew.EdgeNode;
+import textprocessnew.EdgeNode;
 
 public class VertexNode {
 	public String vertex;

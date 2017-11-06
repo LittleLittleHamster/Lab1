@@ -1,4 +1,4 @@
-package StartDemo;
+package startdemo;
 
 import javax.swing.UIManager;
 

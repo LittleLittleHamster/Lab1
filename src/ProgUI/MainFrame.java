@@ -9,7 +9,7 @@ import javax.swing.*;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Scanner;
-import textProcessNew.*;
+import textprocessnew.*;
 
 
 public class MainFrame {
