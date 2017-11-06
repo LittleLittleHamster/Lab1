@@ -122,6 +122,14 @@ public class AdjGraph {
 		
 		int indexWord1;
 		int indexWord2;
+		
+		if(word1.equals("") || word2.equals("")) {
+            return "存在空单词，请重新输入！";
+        }
+        if(word1.matches("[a-zA-Z]+") == false || word2.matches("[a-zA-Z]+") == false) {
+            return "包含非字母字符，请重新输入！";
+        }
+		
 		if(collectList.contains(word1) == false && collectList.contains(word2) == true){
 			res = "No \"" + word1 + "\" in the Graph!";
 			return res;
