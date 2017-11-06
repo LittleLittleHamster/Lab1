@@ -1,4 +1,4 @@
-package GViz;
+package gviz;
 
 //GraphViz.java - a simple API to call dot from Java programs
 

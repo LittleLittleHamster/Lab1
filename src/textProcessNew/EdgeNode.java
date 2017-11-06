@@ -1,4 +1,4 @@
-package textProcessNew;
+package textprocessnew;
 
 public class EdgeNode{
 	public int startVer;	//起点的索引
