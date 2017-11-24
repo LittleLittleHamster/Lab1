@@ -1,3 +1,4 @@
+
 package textprocessnew;
 
 import java.util.*;
@@ -9,18 +10,80 @@ import java.io.File;
 import java.util.Random;
 
 public class AdjGraph {
-	protected int NumOfVertex;
+	private int NumOfVertex;
 	
-	protected VertexNode[] vertexList;
-	protected int[][] vertexMatrix;
-	protected List collectList = new ArrayList();
+	private VertexNode[] vertexList;
+	private int[][] vertexMatrix;
+	private List collectList = new ArrayList();
 	
-	protected String pathTemp = new String();
+	private String pathTemp = new String();
 	
-	protected int[][] dist;
-	protected int[][][] midList;
+	private int[][] dist;
+	private int[][][] midList;
+
 	
-	//根据传入的字符串数组，构建有向图
+	
+	public int getNumOfVertex() {
+        return NumOfVertex;
+    }
+
+    public void setNumOfVertex(int numOfVertex) {
+        NumOfVertex = numOfVertex;
+    }
+
+    public VertexNode[] getVertexList() {
+        return vertexList;
+    }
+
+    public void setVertexList(VertexNode[] vertexList) {
+        this.vertexList = vertexList;
+    }
+
+    public int[][] getVertexMatrix() {
+        return vertexMatrix;
+    }
+
+    public void setVertexMatrix(int[][] vertexMatrix) {
+        this.vertexMatrix = vertexMatrix;
+    }
+
+    public List getCollectList() {
+        return collectList;
+    }
+
+    public void setCollectList(List collectList) {
+        this.collectList = collectList;
+    }
+
+    public String getPathTemp() {
+        return pathTemp;
+    }
+
+    public void setPathTemp(String pathTemp) {
+        this.pathTemp = pathTemp;
+    }
+
+    public int[][] getDist() {
+        return dist;
+    }
+
+    public void setDist(int[][] dist) {
+        this.dist = dist;
+    }
+
+    public int[][][] getMidList() {
+        return midList;
+    }
+
+    public void setMidList(int[][][] midList) {
+        this.midList = midList;
+    }
+    
+    
+    
+    
+
+    //根据传入的字符串数组，构建有向图
 	public AdjGraph(String[] wordList){
 		//字符串数组去重
 		for(int i = 0; i < wordList.length; i++){
@@ -35,53 +98,69 @@ public class AdjGraph {
 		
 		//构造顶点表
 		for(int i = 0; i < NumOfVertex; i++){
-			vertexList[i] = new VertexNode();
-			vertexList[i].vertex = (String) collectList.get(i);	
-			vertexList[i].edgeList = new ArrayList();
+		    VertexNode verTmp = new VertexNode();
+		    verTmp.setVertex((String) collectList.get(i));
+		    verTmp.setEdgeList(new ArrayList());
+			vertexList[i] = verTmp;
 		}
 		
 		//构造边表
 		for(int i = 0; i < wordList.length - 1; i++){
 			EdgeNode tempEdgeNode = new EdgeNode();
 			int indexVertexNode = collectList.indexOf(wordList[i]);
-			if(vertexList[indexVertexNode].edgeList.size() == 0){
-				tempEdgeNode.startVer = indexVertexNode;
-				tempEdgeNode.endVer = collectList.indexOf(wordList[i+1]);
-				tempEdgeNode.startWord = wordList[i];
-				tempEdgeNode.endWord = wordList[i+1];
-				tempEdgeNode.weight = 1;
-				vertexList[indexVertexNode].edgeList.add(tempEdgeNode);
+			if(vertexList[indexVertexNode].getEdgeList().size() == 0){
+				tempEdgeNode.setStartVer(indexVertexNode);
+				tempEdgeNode.setEndVer(collectList.indexOf(wordList[i+1]));
+				tempEdgeNode.setStartWord(wordList[i]);
+				tempEdgeNode.setEndWord(wordList[i+1]);
+				tempEdgeNode.setWeight(1);
+				tempEdgeNode.setVisited(false);
+				
+				ArrayList edgeListTmp = vertexList[indexVertexNode].getEdgeList();
+				edgeListTmp.add(tempEdgeNode);
+				vertexList[indexVertexNode].setEdgeList(edgeListTmp);
 			}
 			else{
 				byte eFlag = 0;
-				for(int j = 0; j < vertexList[indexVertexNode].edgeList.size(); j++){
-					EdgeNode veTemp = (EdgeNode) vertexList[indexVertexNode].edgeList.get(j);
-					if(veTemp.endWord.equals(wordList[i+1])){
+				for(int j = 0; j < vertexList[indexVertexNode].getEdgeList().size(); j++){
+					EdgeNode veTemp = (EdgeNode) vertexList[indexVertexNode].getEdgeList().get(j);
+					if(veTemp.getEndWord().equals(wordList[i+1])){
 						eFlag = 1;
 						EdgeNode NewEdgeNode = new EdgeNode();
-						NewEdgeNode.startVer = veTemp.startVer;
-						NewEdgeNode.startWord = veTemp.startWord;
-						NewEdgeNode.endVer = veTemp.endVer;
-						NewEdgeNode.endWord = veTemp.endWord;
-						NewEdgeNode.weight = veTemp.weight + 1;
-						vertexList[indexVertexNode].edgeList.set(j, NewEdgeNode);
+						NewEdgeNode.setStartVer(veTemp.getStartVer());
+						NewEdgeNode.setStartWord(veTemp.getStartWord());
+						NewEdgeNode.setEndVer(veTemp.getEndVer());
+						NewEdgeNode.setEndWord(veTemp.getEndWord());
+						NewEdgeNode.setWeight(veTemp.getWeight()+1);
+						NewEdgeNode.setVisited(veTemp.getVisited());
+						
+						ArrayList<EdgeNode> edgeListTmp = vertexList[indexVertexNode].getEdgeList();
+		                edgeListTmp.set(j, NewEdgeNode);
+						
+						vertexList[indexVertexNode].setEdgeList(edgeListTmp);;
 						break;
 					}
 				}
 				if(eFlag == 0){
 					EdgeNode NewEdgeNode = new EdgeNode();
-					NewEdgeNode.startVer = indexVertexNode;
-					NewEdgeNode.startWord = wordList[i];
-					NewEdgeNode.endVer = collectList.indexOf(wordList[i+1]);
-					NewEdgeNode.endWord = wordList[i+1];
-					NewEdgeNode.weight = 1;
-					vertexList[indexVertexNode].edgeList.add(NewEdgeNode);
+					
+					NewEdgeNode.setStartVer(indexVertexNode);
+					NewEdgeNode.setStartWord(wordList[i]);
+					NewEdgeNode.setEndVer(collectList.indexOf(wordList[i+1]));
+					NewEdgeNode.setEndWord(wordList[i+1]);
+					NewEdgeNode.setWeight(1);
+					NewEdgeNode.setVisited(false);
+					
+					ArrayList<EdgeNode> edgeListTmp = vertexList[indexVertexNode].getEdgeList();
+                    edgeListTmp.add(NewEdgeNode);
+                    vertexList[indexVertexNode].setEdgeList(edgeListTmp);
+					
 				}
 			}
 		}
 		
 		for(int i = 0; i < NumOfVertex; i++){
-			vertexList[i].edgeList.trimToSize();
+			vertexList[i].getEdgeList().trimToSize();
 		}
 		
 		AdjlistToAdjMatrix();
@@ -99,10 +178,10 @@ public class AdjGraph {
 		//填充dot语言代码
 		//gv.addln("A -> B;");
 		for(int i = 0; i < this.NumOfVertex; i++){
-			for(int j = 0; j < this.vertexList[i].edgeList.size(); j++){
-				EdgeNode veTemp = (EdgeNode) vertexList[i].edgeList.get(j);
-				gv.addln(veTemp.startWord + " -> " + veTemp.endWord +
-						" [style=bold,label=\"" + String.valueOf(veTemp.weight) + "\"];");
+			for(int j = 0; j < this.vertexList[i].getEdgeList().size(); j++){
+				EdgeNode veTemp = (EdgeNode) vertexList[i].getEdgeList().get(j);
+				gv.addln(veTemp.getStartWord() + " -> " + veTemp.getEndWord() +
+						" [style=bold,label=\"" + String.valueOf(veTemp.getWeight()) + "\"];");
 			}
 		}
 		
@@ -146,10 +225,10 @@ public class AdjGraph {
 		indexWord1 = collectList.indexOf(word1);
 		indexWord2 = collectList.indexOf(word2);
 		
-		for(int i = 0; i < vertexList[indexWord1].edgeList.size(); i++){
-			EdgeNode veTemp = (EdgeNode) vertexList[indexWord1].edgeList.get(i);
-			if(hasEdge(veTemp.endWord, word2) == true){
-				bridgeWord.add(veTemp.endWord);
+		for(int i = 0; i < vertexList[indexWord1].getEdgeList().size(); i++){
+			EdgeNode veTemp = (EdgeNode) vertexList[indexWord1].getEdgeList().get(i);
+			if(hasEdge(veTemp.getEndWord(), word2) == true){
+				bridgeWord.add(veTemp.getEndWord());
 			}
 		}
 		
@@ -177,10 +256,10 @@ public class AdjGraph {
 			//填充dot语言代码
 			//gv.addln("A -> B;");
 			for(int i = 0; i < this.NumOfVertex; i++){
-				for(int j = 0; j < this.vertexList[i].edgeList.size(); j++){
-					EdgeNode veTemp = (EdgeNode) vertexList[i].edgeList.get(j);
-					gv.addln(veTemp.startWord + " -> " + veTemp.endWord +
-							" [style=bold,label=\"" + String.valueOf(veTemp.weight) + "\"];");
+				for(int j = 0; j < this.vertexList[i].getEdgeList().size(); j++){
+					EdgeNode veTemp = (EdgeNode) vertexList[i].getEdgeList().get(j);
+					gv.addln(veTemp.getStartWord() + " -> " + veTemp.getEndWord() +
+							" [style=bold,label=\"" + String.valueOf(veTemp.getWeight()) + "\"];");
 				}
 			}
 			
@@ -208,10 +287,10 @@ public class AdjGraph {
 			//填充dot语言代码
 			//gv.addln("A -> B;");
 			for(int i = 0; i < this.NumOfVertex; i++){
-				for(int j = 0; j < this.vertexList[i].edgeList.size(); j++){
-					EdgeNode veTemp = (EdgeNode) vertexList[i].edgeList.get(j);
-					gv.addln(veTemp.startWord + " -> " + veTemp.endWord +
-							" [style=bold,label=\"" + String.valueOf(veTemp.weight) + "\"];");
+				for(int j = 0; j < this.vertexList[i].getEdgeList().size(); j++){
+					EdgeNode veTemp = (EdgeNode) vertexList[i].getEdgeList().get(j);
+					gv.addln(veTemp.getStartWord() + " -> " + veTemp.getEndWord() +
+							" [style=bold,label=\"" + String.valueOf(veTemp.getWeight()) + "\"];");
 				}
 			}			
 			
@@ -281,10 +360,10 @@ public class AdjGraph {
 			//填充dot语言代码
 			//gv.addln("A -> B;");
 			for(int i = 0; i < this.NumOfVertex; i++){
-				for(int j = 0; j < this.vertexList[i].edgeList.size(); j++){
-					EdgeNode veTemp = (EdgeNode) vertexList[i].edgeList.get(j);
-					gv.addln(veTemp.startWord + " -> " + veTemp.endWord +
-							" [style=bold,label=\"" + String.valueOf(veTemp.weight) + "\"];");
+				for(int j = 0; j < this.vertexList[i].getEdgeList().size(); j++){
+					EdgeNode veTemp = (EdgeNode) vertexList[i].getEdgeList().get(j);
+					gv.addln(veTemp.getStartWord() + " -> " + veTemp.getEndWord() +
+							" [style=bold,label=\"" + String.valueOf(veTemp.getWeight()) + "\"];");
 				}
 			}
 			
@@ -311,48 +390,57 @@ public class AdjGraph {
 	public String randomWalk(){
 		//遍历所有的边，初始化
 		for(int i = 0; i < NumOfVertex; i++){
-			if(vertexList[i].edgeList.size() > 0){
-				for(int j = 0; j < vertexList[i].edgeList.size(); j++){
-					EdgeNode veTemp = (EdgeNode) vertexList[i].edgeList.get(j);
+			if(vertexList[i].getEdgeList().size() > 0){
+				for(int j = 0; j < vertexList[i].getEdgeList().size(); j++){
+					EdgeNode veTemp = (EdgeNode) vertexList[i].getEdgeList().get(j);
 					EdgeNode newTemp = new EdgeNode();
-					newTemp.startVer = veTemp.startVer;
-					newTemp.startWord = veTemp.startWord;
-					newTemp.endVer =  veTemp.endVer;
-					newTemp.endWord = veTemp.endWord;
-					newTemp.weight = veTemp.weight;
-					newTemp.visited = false;
-					vertexList[i].edgeList.set(j, newTemp);
+					newTemp.setStartVer(veTemp.getStartVer());
+					newTemp.setStartWord(veTemp.getStartWord());
+					newTemp.setEndVer(veTemp.getEndVer());
+					newTemp.setEndWord(veTemp.getEndWord());
+					newTemp.setWeight(veTemp.getWeight());
+					newTemp.setVisited(false);
+					
+					ArrayList<EdgeNode> edgeListTmp = vertexList[i].getEdgeList();
+                    edgeListTmp.set(j, newTemp);
+                    
+                    vertexList[i].setEdgeList(edgeListTmp);
 				}
 			}
 		}
 		Random random = new Random();
 		int randNextNode = random.nextInt(NumOfVertex);
 		int nowIndex;
-		String res = vertexList[randNextNode].vertex;
+		String res = vertexList[randNextNode].getVertex();
 		nowIndex = randNextNode;
 		
 		while(true){
-			if(vertexList[nowIndex].edgeList.size() == 0){
+			if(vertexList[nowIndex].getEdgeList().size() == 0){
 				break;
 			}
 			else{
-				randNextNode = random.nextInt(vertexList[nowIndex].edgeList.size());
-				EdgeNode veTemp = (EdgeNode) vertexList[nowIndex].edgeList.get(randNextNode);
-				if(veTemp.visited == true){
+				randNextNode = random.nextInt(vertexList[nowIndex].getEdgeList().size());
+				EdgeNode veTemp = (EdgeNode) vertexList[nowIndex].getEdgeList().get(randNextNode);
+				if(veTemp.getVisited() == true){
 					break;
 				}
 				else{
-					res = res + " " + veTemp.endWord;
+					res = res + " " + veTemp.getEndWord();
 					
 					EdgeNode newTemp = new EdgeNode();
-					newTemp.startVer = veTemp.startVer;
-					newTemp.startWord = veTemp.startWord;
-					newTemp.endVer =  veTemp.endVer;
-					newTemp.endWord = veTemp.endWord;
-					newTemp.weight = veTemp.weight;
-					newTemp.visited = true;
-					vertexList[nowIndex].edgeList.set(randNextNode, newTemp);
-					nowIndex = veTemp.endVer;
+					newTemp.setStartVer(veTemp.getStartVer());
+					newTemp.setStartWord(veTemp.getStartWord());
+					newTemp.setEndVer(veTemp.getEndVer());
+					newTemp.setEndWord(veTemp.getEndWord());
+					newTemp.setWeight(veTemp.getWeight());
+					newTemp.setVisited(true);
+					
+					ArrayList edgeListTmp = vertexList[nowIndex].getEdgeList();
+					edgeListTmp.set(randNextNode, newTemp);
+					
+					vertexList[nowIndex].setEdgeList(edgeListTmp);
+					
+					nowIndex = veTemp.getEndVer();
 				}
 			}
 			
@@ -365,9 +453,9 @@ public class AdjGraph {
 		//填充dot语言代码
 		//gv.addln("A -> B;");
 		for(int i = 0; i < this.NumOfVertex; i++){
-			for(int j = 0; j < this.vertexList[i].edgeList.size(); j++){
-				EdgeNode veTemp = (EdgeNode) vertexList[i].edgeList.get(j);
-				gv.addln(veTemp.startWord + " -> " + veTemp.endWord +";");
+			for(int j = 0; j < this.vertexList[i].getEdgeList().size(); j++){
+				EdgeNode veTemp = (EdgeNode) vertexList[i].getEdgeList().get(j);
+				gv.addln(veTemp.getStartWord() + " -> " + veTemp.getEndWord() +";");
 			}
 		}
 		
@@ -429,10 +517,10 @@ public class AdjGraph {
 		//填充dot语言代码
 		//gv.addln("A -> B;");
 		for(int i = 0; i < this.NumOfVertex; i++){
-			for(int j = 0; j < this.vertexList[i].edgeList.size(); j++){
-				EdgeNode veTemp = (EdgeNode) vertexList[i].edgeList.get(j);
-				gv.addln(veTemp.startWord + " -> " + veTemp.endWord +
-						" [style=bold,label=\"" + String.valueOf(veTemp.weight) + "\"];");
+			for(int j = 0; j < this.vertexList[i].getEdgeList().size(); j++){
+				EdgeNode veTemp = (EdgeNode) vertexList[i].getEdgeList().get(j);
+				gv.addln(veTemp.getStartWord() + " -> " + veTemp.getEndWord() +
+						" [style=bold,label=\"" + String.valueOf(veTemp.getWeight()) + "\"];");
 			}
 		}
 		
@@ -468,9 +556,9 @@ public class AdjGraph {
 		int indexWord2;
 		indexWord1 = collectList.indexOf(word1);
 		indexWord2 = collectList.indexOf(word2);
-		for(int i = 0; i < vertexList[indexWord1].edgeList.size(); i++){
-			EdgeNode veTemp = (EdgeNode) vertexList[indexWord1].edgeList.get(i);
-			if(veTemp.endWord.equals(word2)){
+		for(int i = 0; i < vertexList[indexWord1].getEdgeList().size(); i++){
+			EdgeNode veTemp = (EdgeNode) vertexList[indexWord1].getEdgeList().get(i);
+			if(veTemp.getEndWord().equals(word2)){
 				return true;
 			}
 		}
@@ -488,9 +576,9 @@ public class AdjGraph {
 		}
 		
 		for(int i = 0; i < NumOfVertex; i++){
-			for(int j = 0; j < vertexList[i].edgeList.size(); j++){
-				EdgeNode veTemp = (EdgeNode) vertexList[i].edgeList.get(j);
-				vertexMatrix[veTemp.startVer][veTemp.endVer] = veTemp.weight;
+			for(int j = 0; j < vertexList[i].getEdgeList().size(); j++){
+				EdgeNode veTemp = (EdgeNode) vertexList[i].getEdgeList().get(j);
+				vertexMatrix[veTemp.getStartVer()][veTemp.getEndVer()] = veTemp.getWeight();
 			}
 		}
 	}
@@ -606,7 +694,7 @@ public class AdjGraph {
 			}
 		}
 		if(count == 0){
-			pathTemp = pathTemp + vertexList[startNode].vertex + " -> " + vertexList[endNode].vertex +";";
+			pathTemp = pathTemp + vertexList[startNode].getVertex() + " -> " + vertexList[endNode].getVertex() +";";
 			//gv.addln(vertexList[startNode].vertex + " -> " + vertexList[endNode].vertex +";");
 			return;
 		}

@@ -44,7 +44,7 @@ public class TestgenerateNewText {
                 "civilizations", "to", "seek", "new", "life", "to", "find", "out"};
         AdjGraph gra = new AdjGraph(wordList);
         String result = gra.generateNewText("to out");
-        assertEquals("to find out", result);
+        assertEquals("to seek out", result);
     }
 
 }

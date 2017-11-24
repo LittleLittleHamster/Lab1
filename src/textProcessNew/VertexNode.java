@@ -4,6 +4,21 @@ import java.util.*;
 import textprocessnew.EdgeNode;
 
 public class VertexNode {
-	public String vertex;
-	public ArrayList edgeList;		//±ß±í
+	private String vertex;
+	private ArrayList edgeList;		//±ß±í
+	
+    public String getVertex() {
+        return vertex;
+    }
+    public void setVertex(String vertex) {
+        this.vertex = vertex;
+    }
+    public ArrayList getEdgeList() {
+        return edgeList;
+    }
+    public void setEdgeList(ArrayList edgeList) {
+        this.edgeList = edgeList;
+    }
+	
+	
 }
